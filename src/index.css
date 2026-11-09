@@ -1,0 +1,41 @@
+@import "@fontsource-variable/inter";
+@import "tailwindcss";
+
+/* Pointer cursor on every clickable button (Tailwind v4 resets it to default) */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  input[type="submit"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand blue taken from the login page (#1f78c1 / #14477a). The app uses the "violet" names, so they are remapped here. */
+  --color-violet-50: #eef6fc;
+  --color-violet-100: #d9eaf8;
+  --color-violet-200: #b6d5f0;
+  --color-violet-300: #86b8e3;
+  --color-violet-400: #4f95d2;
+  --color-violet-500: #2f82c8;
+  --color-violet-600: #1f78c1;
+  --color-violet-700: #1a5f9a;
+  --color-violet-800: #14477a;
+  --color-violet-900: #0f3558;
+}
+
+/* Paper-like app background: warm off-white, a blue gradient fading down from the top, soft paper fibres and fine grain. */
+.paper-bg {
+  background-color: #f6f4ef;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23g)' opacity='0.08'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.035 0.06' numOctaves='5' seed='7' stitchTiles='stitch' result='n'/><feDiffuseLighting in='n' lighting-color='%23ffffff' surfaceScale='0.6'><feDistantLight azimuth='50' elevation='85'/></feDiffuseLighting></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>"),
+    linear-gradient(to bottom, rgba(31, 120, 193, 0.38) 0%, rgba(31, 120, 193, 0.14) 45%, transparent 100%),
+    linear-gradient(to bottom, #fbfaf7, #f1eee7);
+  background-blend-mode: multiply, multiply, normal, normal;
+  /* the blue fade is a 520px band from the very top; the paper layers tile */
+  background-size: auto, auto, 100% 520px, 100% 100%;
+  background-repeat: repeat, repeat, no-repeat, no-repeat;
+}
